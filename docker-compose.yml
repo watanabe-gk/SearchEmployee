@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    environment:
+      - CACHE_FILE=/cache-data/cache.json
+      - DATABASE=/db-data/employee.db
+      - EMPLOYEES_TABLE=employees
+      - POSITIONS_TABLE=positions
+      - EMPLOYEE_POSITIONS_TABLE=employee_positions
+    volumes:
+      - ./app:/usr/src
+      - db-data:/db-data
+      - cache-data:/cache-data
+    ports:
+      - "3000:3000"
+    tty: true
+volumes:
+  db-data:
+    driver: local
+  cache-data:
+    driver: local
